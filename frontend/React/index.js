@@ -1,1 +1,11 @@
-//first js file to run when app starts connects react to index.html
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./app.js";
+import "./styles/index.css";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
