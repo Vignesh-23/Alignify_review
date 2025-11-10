@@ -51,8 +51,10 @@ function Dashboard() {
   const overallProgress =
     activeGoals.length > 0
       ? Math.round(
-          activeGoals.reduce((sum, goal) => sum + goal.progress, 0) /
-            activeGoals.length,
+          activeGoals.reduce((sum, goal) => {
+            const progress = Number(goal.progress) || 0;
+            return sum + progress;
+          }, 0) / activeGoals.length,
         )
       : 0;
 
