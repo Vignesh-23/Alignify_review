@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GoalCard from "./goalcard.jsx";
 import "../styles/dashboard.css";
+import PropTypes from "prop-types";
 
 /**
  * Dashboard Component
@@ -111,5 +112,7 @@ function Dashboard() {
     </div>
   );
 }
+
+Dashboard.propTypes = {};
 
 export default Dashboard;

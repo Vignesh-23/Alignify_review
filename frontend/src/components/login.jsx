@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/auth.css";
+import PropTypes from "prop-types";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -59,5 +60,7 @@ function Login() {
     </div>
   );
 }
+
+Login.propTypes = {};
 
 export default Login;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 function DailyTasksSection({ planId }) {
   const [tasks, setTasks] = useState([]);
@@ -147,5 +148,9 @@ function DailyTasksSection({ planId }) {
     </div>
   );
 }
+
+DailyTasksSection.propTypes = {
+  planId: PropTypes.string.isRequired,
+};
 
 export default DailyTasksSection;
