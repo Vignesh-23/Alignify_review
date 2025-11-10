@@ -52,7 +52,7 @@ Alignify is a full-stack productivity web app that helps users plan and execute 
 - 💡 Quick actions for common tasks
 - 🔄 Real-time data from MongoDB
 
-## Tech Stack update
+## Tech Stack
 
 **Frontend:**
 
@@ -61,8 +61,6 @@ Alignify is a full-stack productivity web app that helps users plan and execute 
 - Vite for fast development and building
 - PropTypes for component validation
 - CSS3 with component-based organization
-
-**Backend:**
 
 **Backend:**
 
@@ -196,6 +194,7 @@ VITE ready in XXX ms
 ## Use of AI
 
 Navaneeth- Use AI for creating Dashboard CSS where we have overall progress to get circle completion and also for better version for Dashboard CSS.
+Rowaan- I used Claude AI to help troubleshoot issues with daily task lists and checkbox toggle. I also used it to help deploy using render.
 
 ## License
 
