@@ -72,7 +72,6 @@ Alignify is a full-stack productivity web app that helps users plan and execute 
 **Database:**
 
 - MongoDB Atlas
-- Session storage in MongoDB
 
 **DevOps & Infrastructure**
 
