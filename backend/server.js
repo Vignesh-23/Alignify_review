@@ -6,6 +6,7 @@ import apiRoutes from "./routes/routes.js";
 import authRoutes from "./routes/auth.js";
 import { connect } from "./db/myMongoDb.js";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 
 // Get __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +28,13 @@ app.use(
     secret: process.env.SESSION_SECRET || "super-secret-key",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      touchAfter: 24 * 3600, // lazy session update (in seconds)
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    },
   })
 );
 
@@ -45,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
   // Handle React routing - return all non-API requests to React app
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
   });
 } else {
