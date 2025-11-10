@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/auth.css";
+import PropTypes from "prop-types";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -66,5 +67,7 @@ function Signup() {
     </div>
   );
 }
+
+Signup.propTypes = {};
 
 export default Signup;

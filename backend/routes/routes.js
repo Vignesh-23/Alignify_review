@@ -1,5 +1,5 @@
 import express from "express";
-import { ObjectId } from "mongodb"; // ✅ ADD THIS IMPORT
+import { ObjectId } from "mongodb";
 import * as db from "../db/myMongoDb.js";
 
 const router = express.Router();
@@ -72,8 +72,15 @@ router.post("/goals", async (req, res) => {
 router.put("/goals/:id", async (req, res) => {
   try {
     const updates = req.body;
+
+    // Convert dates
     if (updates.startDate) updates.startDate = new Date(updates.startDate);
     if (updates.endDate) updates.endDate = new Date(updates.endDate);
+
+    if (updates.progress !== undefined) {
+      updates.progress = parseInt(updates.progress, 10) || 0;
+      updates.progress = Math.max(0, Math.min(100, updates.progress));
+    }
 
     const success = await db.updateGoal(req.params.id, updates);
     if (!success) {
@@ -237,7 +244,7 @@ router.post("/daily/add", async (req, res) => {
         {
           $push: { taskItems: { text, done: false } },
           $set: { updatedAt: new Date() },
-        }
+        },
       );
     } else {
       // Create new document for this day
@@ -288,12 +295,12 @@ router.put("/daily/toggle", async (req, res) => {
 
     // Toggle the task at the specified index
     const updatedItems = taskDoc.taskItems.map((task, i) =>
-      i === taskIndex ? { ...task, done: !task.done } : task
+      i === taskIndex ? { ...task, done: !task.done } : task,
     );
 
     await collection.updateOne(
       { _id: taskDoc._id },
-      { $set: { taskItems: updatedItems, updatedAt: new Date() } }
+      { $set: { taskItems: updatedItems, updatedAt: new Date() } },
     );
 
     res.json({ message: "Task toggled successfully" });

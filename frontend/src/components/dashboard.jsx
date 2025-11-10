@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GoalCard from "./goalcard.jsx";
 import "../styles/dashboard.css";
+import PropTypes from "prop-types";
 
 /**
  * Dashboard Component
@@ -51,8 +52,10 @@ function Dashboard() {
   const overallProgress =
     activeGoals.length > 0
       ? Math.round(
-          activeGoals.reduce((sum, goal) => sum + goal.progress, 0) /
-            activeGoals.length,
+          activeGoals.reduce((sum, goal) => {
+            const progress = Number(goal.progress) || 0;
+            return sum + progress;
+          }, 0) / activeGoals.length,
         )
       : 0;
 
@@ -109,5 +112,7 @@ function Dashboard() {
     </div>
   );
 }
+
+Dashboard.propTypes = {};
 
 export default Dashboard;

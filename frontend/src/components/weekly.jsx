@@ -359,4 +359,6 @@ function Weekly() {
   );
 }
 
+Weekly.propTypes = {};
+
 export default Weekly;
